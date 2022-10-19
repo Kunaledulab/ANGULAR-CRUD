@@ -1,0 +1,32 @@
+<form [formGroup]="userForm" #formDir="ngForm">
+
+  <div class="form-group">
+    <div><label for="name"><i class="fa-solid fa-id-card fa-2xl"></i></label>
+      <input #id value="" type="text" id="idinp" class="form-control" formControlName="id" required />
+      <div *ngIf="Id.errors?.['pattern'] && (Id.dirty || Id.touched)" class="alert alert-danger">
+        Number Only</div>
+    </div><br>
+    <div>
+      <label for="name">FirstName <i class="fa-regular fa-input-text"></i></label>
+      <input #fn value="" type="text" id="fname" class="form-control" formControlName="firstName" required />
+      <div *ngIf="FirstName.errors?.['pattern'] && (FirstName.dirty || FirstName.touched)" class="alert alert-danger">
+        Alphabates Only
+      </div>
+      <div *ngIf="FirstName.errors?.['minlength']  && (FirstName.dirty || FirstName.touched)" class="alert alert-danger">
+        Name must be at least 4 characters long.
+      </div>
+    </div><br>
+    <div>
+      <label for="name">LastName</label>
+      <input #ln value="" type="text" id="lname" class="form-control" formControlName="lastName" required />
+      <div *ngIf="LastName.errors?.['pattern'] && (LastName.dirty || LastName.touched)" class="alert alert-danger">
+        Alphabates Only
+      </div>
+    </div>
+  </div>
+  <button type="submit" [disabled]="userForm.invalid" (click)="insert(id.value,fn.value,ln.value)">Submit <i class="fa-solid fa-square-check"></i>
+  </button>&nbsp;
+  <button type="reset">Reset</button>
+
+
+</form>
